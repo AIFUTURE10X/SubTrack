@@ -181,7 +181,7 @@ function MonthlySpendingChart({ subscriptions }: { subscriptions: Subscription[]
     if (i === 0) {
       // Current month - use the actual data
       subscriptions.forEach(sub => {
-        if (sub.status === 'active') {
+        if (sub.status.toLowerCase() === 'active') {
           total += sub.amount;
         }
       });
