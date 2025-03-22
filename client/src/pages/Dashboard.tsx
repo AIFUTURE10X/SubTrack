@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSubscriptions } from "@/hooks/useSubscriptions";
-import { Layout } from "@/components/Layout";
 import { SubscriptionCard, AddSubscriptionCard } from "@/components/SubscriptionCard";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
 import { DetailsModal } from "@/components/DetailsModal";
@@ -167,7 +166,7 @@ export default function Dashboard() {
   };
   
   return (
-    <Layout>
+    <>
       {/* Header & Summary */}
       <div className="mb-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between">
@@ -338,6 +337,6 @@ export default function Dashboard() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </Layout>
+    </>
   );
 }

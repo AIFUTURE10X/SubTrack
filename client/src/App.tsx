@@ -9,23 +9,17 @@ import History from "@/pages/History";
 import Settings from "@/pages/Settings";
 import { Layout } from "@/components/Layout";
 
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Dashboard} />
-      <Route path="/statistics" component={Statistics} />
-      <Route path="/history" component={History} />
-      <Route path="/settings" component={Settings} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Layout>
-        <Router />
+        <Switch>
+          <Route path="/" component={Dashboard} />
+          <Route path="/statistics" component={Statistics} />
+          <Route path="/history" component={History} />
+          <Route path="/settings" component={Settings} />
+          <Route component={NotFound} />
+        </Switch>
       </Layout>
       <Toaster />
     </QueryClientProvider>
