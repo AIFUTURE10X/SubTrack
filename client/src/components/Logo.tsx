@@ -21,55 +21,34 @@ export function Logo({ size = 'md', showText = true }: LogoProps) {
       <svg
         width={logoSize}
         height={logoSize}
-        viewBox="0 0 24 24"
+        viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="text-primary"
       >
-        {/* Wallet/payment card shape */}
+        {/* Chart bars with upward trend */}
         <path
-          d="M21 12V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V16"
-          stroke="currentColor" 
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* Card details/subscription elements */}
-        <path
-          d="M3 8H21"
-          stroke="currentColor" 
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M22 34H13C12.4477 34 12 33.5523 12 33V25C12 24.4477 12.4477 24 13 24H22C22.5523 24 23 24.4477 23 25V33C23 33.5523 22.5523 34 22 34Z"
+          fill="#22c55e" // Green color for the first bar
         />
         <path
-          d="M16 16C16 14.9391 16.4214 13.9217 17.1716 13.1716C17.9217 12.4214 18.9391 12 20 12C21.0609 12 22.0783 12.4214 22.8284 13.1716C23.5786 13.9217 24 14.9391 24 16"
-          stroke="currentColor" 
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M31 34H22C21.4477 34 21 33.5523 21 33V19C21 18.4477 21.4477 18 22 18H31C31.5523 18 32 18.4477 32 19V33C32 33.5523 31.5523 34 31 34Z"
+          fill="#34d399" // Light green for the middle bar
         />
-        {/* Repeat symbol for subscriptions */}
-        <circle 
-          cx="20" 
-          cy="16" 
-          r="2" 
-          stroke="currentColor" 
-          strokeWidth="2"
-        />
-        {/* Dollar sign */}
         <path
-          d="M9 13V11M9 11V9M9 11H7M9 11H11"
-          stroke="currentColor" 
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M40 34H31C30.4477 34 30 33.5523 30 33V10C30 9.44772 30.4477 9 31 9H40C40.5523 9 41 9.44772 41 10V33C41 33.5523 40.5523 34 40 34Z"
+          fill="#10b981" // Darker green for the tallest bar
+        />
+        
+        {/* 'S' swoosh overlay */}
+        <path
+          d="M32 13C28 15 24 15 20 13C16 11 12 11 8 13V20C12 18 16 18 20 20C24 22 28 22 32 20V13Z"
+          fill="#3b82f6" // Blue color for the 'S' swoosh
         />
       </svg>
       
       {showText && (
         <span className={`ml-2 font-bold tracking-tight ${fontSize} text-foreground`}>
-          SubScribe
+          SubTrack
         </span>
       )}
     </div>

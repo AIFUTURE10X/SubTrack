@@ -49,7 +49,7 @@ export function Layout({ children }: LayoutProps) {
       <aside className="hidden md:flex md:flex-col md:w-64 bg-sidebar border-r border-border">
         <div className="p-4 flex items-center">
           <Logo size="sm" showText={false} />
-          <h1 className="text-xl font-semibold text-sidebar-foreground ml-2">SubScribe</h1>
+          <h1 className="text-xl font-semibold text-sidebar-foreground ml-2">SubTrack</h1>
         </div>
         
         <div className="flex-1 p-4">
@@ -76,7 +76,7 @@ export function Layout({ children }: LayoutProps) {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Logo size="sm" showText={false} />
-            <h1 className="text-lg font-semibold text-card-foreground ml-2">SubScribe</h1>
+            <h1 className="text-lg font-semibold text-card-foreground ml-2">SubTrack</h1>
           </div>
           
           <Sheet>
@@ -88,7 +88,7 @@ export function Layout({ children }: LayoutProps) {
             <SheetContent side="left" className="p-0 bg-sidebar">
               <div className="p-4 flex items-center border-b border-border">
                 <Logo size="sm" showText={false} />
-                <h1 className="text-lg font-semibold text-sidebar-foreground ml-2">SubScribe</h1>
+                <h1 className="text-lg font-semibold text-sidebar-foreground ml-2">SubTrack</h1>
               </div>
               
               <div className="p-4">
