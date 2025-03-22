@@ -203,10 +203,10 @@ function MonthlySpendingChart({ subscriptions }: { subscriptions: Subscription[]
       <BarChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
-        <YAxis tickFormatter={(value) => `$${value.toFixed(0)}`} />
+        <YAxis tickFormatter={(value: any) => `$${Number(value).toFixed(0)}`} />
         <Tooltip 
-          formatter={(value: number) => ['$' + value.toFixed(2), 'Amount']}
-          labelFormatter={(label) => `Month: ${label}`}
+          formatter={(value: any) => ['$' + Number(value).toFixed(2), 'Amount']}
+          labelFormatter={(label: any) => `Month: ${label}`}
         />
         <Bar dataKey="amount" fill="#3498db" radius={[4, 4, 0, 0]} />
       </BarChart>
@@ -240,7 +240,7 @@ function CategoryBreakdownChart({ subscriptions }: { subscriptions: Subscription
           cx="50%"
           cy="50%"
           labelLine={false}
-          label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+          label={({ name, percent }: any) => `${name}: ${(percent * 100).toFixed(0)}%`}
           outerRadius={80}
           fill="#8884d8"
           dataKey="value"
@@ -249,7 +249,7 @@ function CategoryBreakdownChart({ subscriptions }: { subscriptions: Subscription
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Tooltip formatter={(value: number) => ['$' + value.toFixed(2), 'Amount']} />
+        <Tooltip formatter={(value: any) => ['$' + Number(value).toFixed(2), 'Amount']} />
         <Legend />
       </PieChart>
     </ResponsiveContainer>
