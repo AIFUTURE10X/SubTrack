@@ -27,7 +27,7 @@ export default function History() {
   });
   
   return (
-    <Layout>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">Payment History</h1>
         <p className="text-muted-foreground mt-2">Track all your subscription payments</p>
@@ -88,7 +88,7 @@ export default function History() {
           Note: Full payment history functionality coming soon!
         </p>
       </div>
-    </Layout>
+    </>
   );
 }
 

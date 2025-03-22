@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layout } from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart2, DollarSign, TrendingUp, ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -24,7 +23,7 @@ export default function Statistics() {
   });
   
   return (
-    <Layout>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">Statistics</h1>
         <p className="text-muted-foreground mt-2">View your subscription spending analytics</p>
@@ -99,7 +98,7 @@ export default function Statistics() {
           </CardContent>
         </Card>
       </div>
-    </Layout>
+    </>
   );
 }
 
