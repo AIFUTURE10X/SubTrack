@@ -66,7 +66,7 @@ export default function History() {
                     <TableCell>{formatDate(new Date(Date.now() - i * 1000 * 60 * 60 * 24 * 7))}</TableCell>
                     <TableCell>{formatCurrency(subscription.amount, subscription.currency)}</TableCell>
                     <TableCell>
-                      <PaymentStatus status={subscription.status === 'active' ? 'successful' : 'pending'} />
+                      <PaymentStatus status={'successful'} />
                     </TableCell>
                   </TableRow>
                 ))}
