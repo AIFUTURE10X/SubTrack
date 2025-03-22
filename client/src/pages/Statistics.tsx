@@ -5,12 +5,18 @@ import { BarChart2, DollarSign, TrendingUp, ArrowDownRight, ArrowUpRight } from 
 import { useQuery } from '@tanstack/react-query';
 import { Skeleton } from '@/components/ui/skeleton';
 
+interface SummaryData {
+  monthlyTotal: number;
+  yearlyTotal: number;
+  activeCount: number;
+}
+
 export default function Statistics() {
   const { data: subscriptions, isLoading: isLoadingSubscriptions } = useQuery({
     queryKey: ['/api/subscriptions'],
   });
   
-  const { data: summary, isLoading: isLoadingSummary } = useQuery({
+  const { data: summary, isLoading: isLoadingSummary } = useQuery<SummaryData>({
     queryKey: ['/api/summary'],
   });
   

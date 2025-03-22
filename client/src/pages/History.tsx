@@ -49,7 +49,7 @@ export default function History() {
                 <Skeleton key={i} className="h-12 w-full" />
               ))}
             </div>
-          ) : subscriptions?.length > 0 ? (
+          ) : subscriptions && subscriptions.length > 0 ? (
             <Table>
               <TableHeader>
                 <TableRow>
@@ -60,8 +60,7 @@ export default function History() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {/* This is just a placeholder with mock data */}
-                {subscriptions.slice(0, 10).map((subscription, i) => (
+                {subscriptions && subscriptions.slice(0, 10).map((subscription: Subscription, i: number) => (
                   <TableRow key={`${subscription.id}-${i}`}>
                     <TableCell className="font-medium">{subscription.name}</TableCell>
                     <TableCell>{formatDate(new Date(Date.now() - i * 1000 * 60 * 60 * 24 * 7))}</TableCell>
