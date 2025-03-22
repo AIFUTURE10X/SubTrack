@@ -11,3 +11,21 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+@layer components {
+  .bg-sidebar {
+    @apply bg-card;
+  }
+  
+  .text-sidebar-foreground {
+    @apply text-card-foreground;
+  }
+  
+  .bg-sidebar-accent {
+    @apply bg-primary;
+  }
+  
+  .text-sidebar-accent-foreground {
+    @apply text-primary-foreground;
+  }
+}

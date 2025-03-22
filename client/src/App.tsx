@@ -7,6 +7,7 @@ import Dashboard from "@/pages/Dashboard";
 import Statistics from "@/pages/Statistics";
 import History from "@/pages/History";
 import Settings from "@/pages/Settings";
+import { Layout } from "@/components/Layout";
 
 function Router() {
   return (
@@ -23,7 +24,9 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
+      <Layout>
+        <Router />
+      </Layout>
       <Toaster />
     </QueryClientProvider>
   );
