@@ -8,9 +8,9 @@ import {
   BarChart2, 
   History, 
   Settings, 
-  Menu, 
-  Calendar 
+  Menu
 } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface LayoutProps {
@@ -48,8 +48,8 @@ export function Layout({ children }: LayoutProps) {
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex md:flex-col md:w-64 bg-sidebar border-r border-border">
         <div className="p-4 flex items-center">
-          <Calendar className="h-5 w-5 text-primary mr-2" />
-          <h1 className="text-xl font-semibold text-sidebar-foreground">SubTracker</h1>
+          <Logo size="sm" showText={false} />
+          <h1 className="text-xl font-semibold text-sidebar-foreground ml-2">SubScribe</h1>
         </div>
         
         <div className="flex-1 p-4">
@@ -75,8 +75,8 @@ export function Layout({ children }: LayoutProps) {
       <div className="md:hidden w-full fixed top-0 z-10 bg-card border-b border-border px-4 py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Calendar className="h-5 w-5 text-primary mr-2" />
-            <h1 className="text-lg font-semibold text-card-foreground">SubTracker</h1>
+            <Logo size="sm" showText={false} />
+            <h1 className="text-lg font-semibold text-card-foreground ml-2">SubScribe</h1>
           </div>
           
           <Sheet>
@@ -87,8 +87,8 @@ export function Layout({ children }: LayoutProps) {
             </SheetTrigger>
             <SheetContent side="left" className="p-0 bg-sidebar">
               <div className="p-4 flex items-center border-b border-border">
-                <Calendar className="h-5 w-5 text-primary mr-2" />
-                <h1 className="text-lg font-semibold text-sidebar-foreground">SubTracker</h1>
+                <Logo size="sm" showText={false} />
+                <h1 className="text-lg font-semibold text-sidebar-foreground ml-2">SubScribe</h1>
               </div>
               
               <div className="p-4">
