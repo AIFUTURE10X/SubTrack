@@ -20,15 +20,15 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
         
         return (
           <Link key={item.href} href={item.href}>
-            <a
+            <div
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-accent hover:text-accent-foreground",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer",
                 isActive ? "bg-primary/10 text-foreground font-medium" : "text-muted-foreground"
               )}
             >
               {item.icon}
               {item.title}
-            </a>
+            </div>
           </Link>
         );
       })}
