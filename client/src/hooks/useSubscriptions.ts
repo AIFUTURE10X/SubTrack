@@ -26,6 +26,14 @@ export function useSubscriptions() {
     return useQuery<any[]>({
       queryKey: ['/api/subscriptions', subscriptionId, 'payments'],
       enabled: !!subscriptionId,
+      queryFn: async () => {
+        if (!subscriptionId) return [];
+        const response = await fetch(`/api/subscriptions/${subscriptionId}/payments`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch payment history');
+        }
+        return response.json();
+      }
     });
   };
   

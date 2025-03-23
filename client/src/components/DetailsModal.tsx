@@ -23,10 +23,10 @@ export function DetailsModal({
   const { usePaymentHistory } = useSubscriptions();
   
   const { data: paymentHistory, isLoading: isLoadingPayments } = usePaymentHistory(
-    subscription?.id || null
+    open && subscription ? subscription.id : null
   );
   
-  if (!subscription) {
+  if (!open || !subscription) {
     return null;
   }
   
