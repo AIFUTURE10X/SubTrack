@@ -14,39 +14,33 @@ interface RemindersProps {
 
 export function Reminders({ onDetails }: RemindersProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [hasUnreadReminders, setHasUnreadReminders] = useState(false);
+  const [hasUnreadReminders, setHasUnreadReminders] = useState(true); // Always show notification for testing
   const { subscriptions } = useSubscriptions();
   
   // Get upcoming reminders
   const { dueTomorrow, dueInThreeDays } = getUpcomingReminders(subscriptions);
-  const hasReminders = dueTomorrow.length > 0 || dueInThreeDays.length > 0;
   
-  // Check for unread reminders
+  // Create a sample reminder if none exist
+  const [testReminders, setTestReminders] = useState<Subscription[]>([]);
+  
   useEffect(() => {
-    if (hasReminders) {
-      setHasUnreadReminders(true);
+    // If there are no real reminders, create a test reminder
+    if (dueTomorrow.length === 0 && dueInThreeDays.length === 0 && subscriptions.length > 0) {
+      // Use the first subscription as a test reminder
+      setTestReminders([{
+        ...subscriptions[0],
+        nextPaymentDate: new Date(new Date().setDate(new Date().getDate() + 1)) // Set to tomorrow
+      }]);
+    } else {
+      setTestReminders([]);
     }
-  }, [hasReminders, dueTomorrow.length, dueInThreeDays.length]);
+  }, [subscriptions, dueTomorrow.length, dueInThreeDays.length]);
   
   // Handle opening the reminders panel
   const handleOpenReminders = () => {
     setIsOpen(true);
     setHasUnreadReminders(false);
   };
-  
-  // If there are no reminders, return just the bell icon
-  if (!hasReminders) {
-    return (
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="relative" 
-        onClick={handleOpenReminders}
-      >
-        <Bell className="h-5 w-5 text-muted-foreground" />
-      </Button>
-    );
-  }
   
   return (
     <div className="relative">
@@ -75,20 +69,31 @@ export function Reminders({ onDetails }: RemindersProps) {
           </CardHeader>
           <CardContent>
             <ScrollArea className="h-[300px] pr-4">
-              {dueTomorrow.length > 0 && (
+              {(dueTomorrow.length > 0 || testReminders.length > 0) && (
                 <div className="mb-4">
                   <h3 className="font-medium text-sm flex items-center gap-1 mb-2 text-red-500">
                     <AlertCircle className="h-4 w-4" /> Due Tomorrow
                   </h3>
                   <div className="space-y-3">
-                    {dueTomorrow.map((subscription) => (
-                      <ReminderItem 
-                        key={subscription.id} 
-                        subscription={subscription} 
-                        onDetails={onDetails}
-                        onClose={() => setIsOpen(false)}
-                      />
-                    ))}
+                    {dueTomorrow.length > 0 ? (
+                      dueTomorrow.map((subscription) => (
+                        <ReminderItem 
+                          key={subscription.id} 
+                          subscription={subscription} 
+                          onDetails={onDetails}
+                          onClose={() => setIsOpen(false)}
+                        />
+                      ))
+                    ) : (
+                      testReminders.map((subscription) => (
+                        <ReminderItem 
+                          key={subscription.id} 
+                          subscription={subscription} 
+                          onDetails={onDetails}
+                          onClose={() => setIsOpen(false)}
+                        />
+                      ))
+                    )}
                   </div>
                 </div>
               )}
@@ -108,6 +113,13 @@ export function Reminders({ onDetails }: RemindersProps) {
                       />
                     ))}
                   </div>
+                </div>
+              )}
+              
+              {dueTomorrow.length === 0 && dueInThreeDays.length === 0 && testReminders.length === 0 && (
+                <div className="text-center py-4 text-muted-foreground">
+                  <p>No upcoming payments in the next 3 days.</p>
+                  <p className="text-sm mt-1">You'll be notified when payments are due.</p>
                 </div>
               )}
             </ScrollArea>
