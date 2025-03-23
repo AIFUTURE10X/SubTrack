@@ -98,3 +98,53 @@ export function getIconForSubscription(name: string, customIcon?: string): strin
   // Default icon
   return "credit-card";
 }
+
+/**
+ * Checks if a payment is due within the specified number of days
+ * @param nextPaymentDate The next payment date
+ * @param days Number of days to check
+ * @returns Boolean indicating if payment is due within specified days
+ */
+export function isPaymentDueSoon(nextPaymentDate: Date | string, days: number): boolean {
+  const paymentDate = new Date(nextPaymentDate);
+  const today = new Date();
+  
+  // Clear time portion for accurate day calculation
+  paymentDate.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+  
+  // Calculate the difference in milliseconds
+  const differenceMs = paymentDate.getTime() - today.getTime();
+  
+  // Convert to days
+  const differenceDays = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
+  
+  // Return true if payment is due within specified days
+  return differenceDays >= 0 && differenceDays <= days;
+}
+
+/**
+ * Get upcoming payment reminders
+ * @param subscriptions List of all subscriptions
+ * @returns Object with subscriptions due in 1 day and 3 days
+ */
+export function getUpcomingReminders(subscriptions: Subscription[]) {
+  const dueTomorrow: Subscription[] = [];
+  const dueInThreeDays: Subscription[] = [];
+  
+  subscriptions.forEach(subscription => {
+    // Only process active subscriptions
+    if (subscription.status === StatusEnum.ACTIVE) {
+      if (isPaymentDueSoon(subscription.nextPaymentDate, 1)) {
+        dueTomorrow.push(subscription);
+      } else if (isPaymentDueSoon(subscription.nextPaymentDate, 3)) {
+        dueInThreeDays.push(subscription);
+      }
+    }
+  });
+  
+  return {
+    dueTomorrow,
+    dueInThreeDays
+  };
+}
