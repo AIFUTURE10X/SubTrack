@@ -20,20 +20,15 @@ export function Reminders({ onDetails }: RemindersProps) {
   // Get upcoming reminders
   const { dueTomorrow, dueInThreeDays } = getUpcomingReminders(subscriptions);
   
-  // Create a sample reminder if none exist
-  const [testReminders, setTestReminders] = useState<Subscription[]>([]);
-  
-  useEffect(() => {
-    // If there are no real reminders, create a test reminder
-    if (dueTomorrow.length === 0 && dueInThreeDays.length === 0 && subscriptions.length > 0) {
-      // Use the first subscription as a test reminder
-      setTestReminders([{
+  // Create a sample reminder for testing purposes
+  const testReminders = React.useMemo(() => {
+    if (subscriptions.length > 0 && dueTomorrow.length === 0 && dueInThreeDays.length === 0) {
+      return [{
         ...subscriptions[0],
         nextPaymentDate: new Date(new Date().setDate(new Date().getDate() + 1)) // Set to tomorrow
-      }]);
-    } else {
-      setTestReminders([]);
+      }];
     }
+    return [];
   }, [subscriptions, dueTomorrow.length, dueInThreeDays.length]);
   
   // Handle opening the reminders panel
